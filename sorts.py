@@ -35,9 +35,8 @@ def cocktail_sort(arr):
         swapped = False
 
         for i in range(start, end):
-            if arr[i] > arr[i + 1]:
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
-                swapped = True
+            array_comparision_swap(arr, i)
+            swapped = True
 
         if not swapped:
             break
@@ -46,13 +45,18 @@ def cocktail_sort(arr):
         end -= 1
 
         for i in range(end, start - 1, -1):
-            if arr[i] > arr[i + 1]:
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
-                swapped = True
+            array_comparision_swap(arr, i)
+            swapped = True
 
         start += 1
 
     return arr
+
+def array_comparision_swap(arr, i):
+     if arr[i] > arr[i + 1]:
+        arr[i], arr[i + 1] = arr[i + 1], arr[i]
+       
+
 
 if __name__ == "__main__":
     sample_array = [38, 27, 43, 3, 9, 82, 10]
