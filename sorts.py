@@ -83,6 +83,44 @@ def heapify(arr, n, i):
         arr[i], arr[largest] = arr[largest], arr[i]
         heapify(arr, n, largest)
 
+def counting_sort(arr):
+    maximo = max(arr)
+    count = [0] * (maximo + 1)
+    for num in arr:
+        count[num] += 1
+    
+    i = 0
+    for val in range(0,maximo):
+        while count[val] > 0:
+            arr[i] = val
+            i += 1
+            count[val] -= 1
+    return arr
+
+def stalin_sort(arr):
+    if len(arr) == 0:
+        return arr
+    
+    kept = [arr[0]]
+    max_so_far = arr[0] 
+
+    for i in range(1, len(arr)):
+        if arr[i] >= max_so_far:
+            kept.append(arr[i])
+            max_so_far = arr[i]
+    return kept
+
+def bogosort(arr):
+    import random
+    while not is_sorted(arr):
+        random.shuffle(arr)
+    return arr
+
+def is_sorted(arr):
+    for i in range(1,len(arr)):
+        if arr[i-1] > arr[i]:
+            return False
+    return True
 
 if __name__ == "__main__":
     sample_array = [38, 27, 43, 3, 9, 82, 10]
@@ -93,3 +131,9 @@ if __name__ == "__main__":
     print("Sorted array (Cocktail Sort):", sorted_array)
     sorted_array = heapSort(sample_array)
     print("Sorted array (Heap Sort):", sorted_array)
+    sorted_array = counting_sort(sample_array)
+    print("Sorted array (Counting Sort):", sorted_array)
+    sorted_array = stalin_sort(sample_array)
+    print("Sorted array (Stalin Sort):", sorted_array)
+    sorted_array = bogosort(sample_array)
+    print("Sorted array (Bogosort):", sorted_array)
