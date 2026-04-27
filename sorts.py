@@ -1,3 +1,6 @@
+import math
+
+
 def merge(left, right):
     result = []
     i = j = 0
@@ -122,6 +125,26 @@ def is_sorted(arr):
             return False
     return True
 
+def bucketSort(arr):
+    
+    max_value = max(arr)
+    buckets = [[] for _ in range(max_value + 1)]
+
+    for num in arr:
+        bucketIndex = math.floor((num - 1)/3)
+        buckets[bucketIndex].append(num)
+
+    for bucket in buckets:
+        bucket.sort()
+    
+    write_index = 0
+    for bucket in buckets:
+        for num in bucket:
+            arr[write_index] = num
+            write_index += 1
+    return arr
+            
+
 if __name__ == "__main__":
     sample_array = [38, 27, 43, 3, 9, 82, 10]
     print("Original array:", sample_array)
@@ -137,3 +160,5 @@ if __name__ == "__main__":
     print("Sorted array (Stalin Sort):", sorted_array)
     sorted_array = bogosort(sample_array)
     print("Sorted array (Bogosort):", sorted_array)
+    sorted_array = bucketSort(sample_array)
+    print("Sorted array (Bucket Sort):", sorted_array)
