@@ -143,6 +143,22 @@ def bucketSort(arr):
             arr[write_index] = num
             write_index += 1
     return arr
+
+def library_sort(arr):
+    for i in range(1,len(arr)):
+        left = 0
+        right = i
+
+        while left < right:
+            mid = (left + right) >> 1
+            if arr[mid] <= arr[i]:
+                left = mid + 1
+            else:
+                right = mid
+        for j in range(i,left, -1):
+            [arr[j], arr[j -1]] =[arr[j-1],arr[j]]
+    return arr
+
             
 
 if __name__ == "__main__":
@@ -162,3 +178,5 @@ if __name__ == "__main__":
     print("Sorted array (Bogosort):", sorted_array)
     sorted_array = bucketSort(sample_array)
     print("Sorted array (Bucket Sort):", sorted_array)
+    sorted_array = library_sort(sample_array)
+    print("Sorted array (Library Sort):", sorted_array)
