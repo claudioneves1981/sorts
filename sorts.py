@@ -159,6 +159,19 @@ def library_sort(arr):
             [arr[j], arr[j -1]] =[arr[j-1],arr[j]]
     return arr
 
+arr = [38, 27, 43, 3, 9, 82, 10]
+def slow_sort(arr, i=0, j=len(arr)-1):
+    if i >= j:
+        return
+    m = (i + j) >> 1
+    slow_sort(arr, i, m)
+    slow_sort(arr, m + 1, j)
+    if arr[m] > arr[j]:
+        arr[m], arr[j] = arr[j], arr[m]
+    slow_sort(arr, i, j - 1)
+    return arr
+    
+
             
 
 if __name__ == "__main__":
@@ -180,3 +193,5 @@ if __name__ == "__main__":
     print("Sorted array (Bucket Sort):", sorted_array)
     sorted_array = library_sort(sample_array)
     print("Sorted array (Library Sort):", sorted_array)
+    sorted_array = slow_sort(sample_array)
+    print("Sorted array (Slow Sort):", sorted_array)
