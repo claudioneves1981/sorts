@@ -171,7 +171,24 @@ def slow_sort(arr, i=0, j=len(arr)-1):
     slow_sort(arr, i, j - 1)
     return arr
     
+def odd_even_sort(arr):
+    n = len(arr)
+    is_sorted = False
 
+    while not is_sorted:
+        is_sorted = True
+
+        for i in range(1, n - 1, 2):
+            if arr[i] > arr[i + 1]:
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                is_sorted = False
+
+        for i in range(0, n - 1, 2):
+            if arr[i] > arr[i + 1]:
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                is_sorted = False
+
+    return arr
             
 
 if __name__ == "__main__":
@@ -195,3 +212,5 @@ if __name__ == "__main__":
     print("Sorted array (Library Sort):", sorted_array)
     sorted_array = slow_sort(sample_array)
     print("Sorted array (Slow Sort):", sorted_array)
+    sorted_array = odd_even_sort(sample_array)
+    print("Sorted array (Odd-Even Sort):", sorted_array)
